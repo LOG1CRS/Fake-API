@@ -7,7 +7,7 @@
     "server": "nodemon app.js",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "Server-install": "npm install",
+    "server-install": "npm install",
     "client-install": "cd client && npm install"
   },
   "repository": {
