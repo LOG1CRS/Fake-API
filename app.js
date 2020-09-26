@@ -4,6 +4,7 @@ const path = require('path');
 const homeRoutes = require('./routes/client.routes');
 const apiRoutes = require('./routes/api.routes');
 require('dotenv').config();
+require('./database');
 
 const app = express();
 
