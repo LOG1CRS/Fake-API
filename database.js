@@ -1,7 +1,9 @@
 const mongoose = require('mongoose');
 const { MONGOOSE_URI } = process.env;
-console.log(MONGOOSE_URI);
-mongoose.connect(MONGOOSE_URI);
+mongoose.connect(MONGOOSE_URI, {
+  useUnifiedTopology: true,
+  useNewUrlParser: true,
+});
 
 mongoose.connection.on('error', (err) => {
   console.log('err', err);
