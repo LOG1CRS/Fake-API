@@ -30,8 +30,15 @@ const UserSchema = new Schema(
     imageProfile: {
       type: String,
     },
+    ownerEmail: {
+      type: String,
+    },
     friends: { type: [String] },
-    posts: { type: [Post] },
+    posts: [
+      {
+        ref: 'Post',
+      },
+    ],
   },
   { timestamps: true }
 );
