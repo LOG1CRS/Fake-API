@@ -1,5 +1,7 @@
 const { Router } = require('express');
+const { route } = require('./user.routes');
 const router = Router();
+const userRoutes = require('./user.routes');
 
 router.get('/', (req, res) => {
   res.json('Fake API JSON');

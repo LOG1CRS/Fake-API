@@ -3,6 +3,7 @@ const morgan = require('morgan');
 const path = require('path');
 const homeRoutes = require('./routes/client.routes');
 const apiRoutes = require('./routes/api.routes');
+const userRoutes = require('./routes/user.routes');
 require('dotenv').config();
 require('./database');
 
@@ -21,6 +22,7 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, 'client', 'build')));
 
 // Routes
+app.use('/api/users', userRoutes);
 app.use('/api', apiRoutes);
 app.use('/', homeRoutes);
 

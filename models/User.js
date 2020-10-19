@@ -21,7 +21,7 @@ const UserSchema = new Schema(
     gender: {
       type: String,
     },
-    emil: {
+    email: {
       type: String,
     },
     cellphone: {
