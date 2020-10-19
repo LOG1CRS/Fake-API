@@ -1,0 +1,8 @@
+{
+    "welcome": "Welcome to Fake API!",
+    "about": "An API about fake user profiles information thought to help other developers test their social apps.",
+    "message": "To start using this API, redirect to /api/users",
+    "users": "http://localhost:9000/api/users",
+    "project_repository": "https://github.com/LOG1CRS/Fake-API",
+    "api_documentation": "https://github.com/LOG1CRS/Fake-API/blob/master/README.md"
+}
