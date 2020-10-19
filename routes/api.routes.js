@@ -1,13 +1,9 @@
 const { Router } = require('express');
 const router = Router();
+const { index, error } = require('../controllers/api.controller');
 
-router.get('/', (req, res) => {
-  res.json('Fake API JSON');
-});
+router.get('/', index);
 
-router.get('/*', (req, res) => {
-  res.status(404);
-  res.json('Error 404, Fake API cannot understand your request.');
-});
+router.get('/*', error);
 
 module.exports = router;
