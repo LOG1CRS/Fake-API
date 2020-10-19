@@ -3,5 +3,6 @@
   "docs": "/docs",
   "about": "/about",
   "repo": "https://github.com/LOG1CRS/Fake-API",
-  "support": "/support-us"
+  "support": "/support-us",
+  "license": "https://github.com/LOG1CRS/Fake-API/blob/master/LICENSE"
 }
