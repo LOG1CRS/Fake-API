@@ -1,11 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Hero from '../components/main/Hero';
 
 const Main = () => {
   return (
     <>
-      <h1>Hello World with Fake API!</h1>
-      <Link to="/docs">Docs</Link>
+      <Hero />
     </>
   );
 };
