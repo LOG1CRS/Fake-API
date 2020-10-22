@@ -16,7 +16,7 @@ const UserSchema = new Schema(
       type: Number,
     },
     birthday: {
-      type: Date,
+      type: String,
     },
     gender: {
       type: String,
@@ -36,6 +36,7 @@ const UserSchema = new Schema(
     friends: { type: [String] },
     posts: [
       {
+        type: Schema.Types.ObjectId,
         ref: 'Post',
       },
     ],
