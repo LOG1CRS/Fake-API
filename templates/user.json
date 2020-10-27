@@ -1,0 +1,21 @@
+{
+  "id": 0,
+  "name": "",
+  "lastName": "",
+  "age": 0,
+  "birthday": "",
+  "gender": "",
+  "email": "",
+  "cellphone": "",
+  "imageProfile": "",
+  "friends": [],
+  "posts": [
+    {
+      "image": "",
+      "description": "",
+      "likes": 0,
+      "comments": 0,
+      "shares": 0
+    }
+  ]
+}
