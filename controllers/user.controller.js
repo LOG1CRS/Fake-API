@@ -1,4 +1,5 @@
 const User = require('../models/User');
+const response = require('../templates/response_templates/response.json');
 
 const controller = {};
 
@@ -24,6 +25,14 @@ controller.createUser = async (req, res) => {
   } catch (error) {
     console.error(error);
   }
+};
+
+controller.getSpecificUsers = async (req, res) => {
+  const required_ids = req.params['id'];
+  const ids = required_ids.split(',');
+  response.response.count = ids.length;
+  response.results = ids;
+  res.json(response);
 };
 
 module.exports = controller;
