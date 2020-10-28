@@ -8,7 +8,7 @@ import {
   Hidden,
 } from '@material-ui/core';
 import { Link } from 'react-router-dom';
-import { home, docs, about, repo } from '../../routes/routes.json';
+import { home, docs, about, repo, license } from '../../routes/routes.json';
 
 import footerImg from '../../assets/static/Fake-logo-color.png';
 
@@ -24,6 +24,11 @@ const useStyle = makeStyles((theme) => ({
     },
     [theme.breakpoints.only('xs')]: {
       height: 400,
+    },
+  },
+  footerContainer: {
+    [theme.breakpoints.only('lg')]: {
+      width: '70%',
     },
   },
   footerLogo: {
@@ -104,10 +109,10 @@ const Footer = () => {
         container
         className={classes.footerMenuContainer}
         alignItems="center"
-        justify="space-evenly"
+        justify="center"
       >
         <Hidden only="xs">
-          <Container fixed>
+          <Container fixed className={classes.footerContainer}>
             <Grid container>
               <Grid item sm={3} className={classes.footerMenuItem}>
                 <Link to={home} className={classes.link}>
@@ -221,13 +226,20 @@ const Footer = () => {
         alignItems="center"
         justify="center"
       >
-        <Typography
-          variant="body1"
-          color="textSecondary"
-          className={classes.footerLicense}
+        <a
+          href={license}
+          className={classes.link}
+          target="_blank"
+          rel="noopener noreferrer"
         >
-          &copy; MIT License
-        </Typography>
+          <Typography
+            variant="body1"
+            color="textSecondary"
+            className={classes.footerLicense}
+          >
+            &copy; MIT License
+          </Typography>
+        </a>
       </Grid>
     </Grid>
   );

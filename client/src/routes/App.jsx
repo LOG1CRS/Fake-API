@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { home, docs } from './routes.json';
+import RouterScrollToTop from '../utils/RouterScrollToTop';
 
 import Layout from '../components/layout/Layout';
 import theme from '../assets/style/themeConfig';
@@ -13,6 +14,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <ThemeProvider theme={theme}>
+        <RouterScrollToTop />
         <Layout>
           <Switch>
             <Route exact path={home} component={Main} />

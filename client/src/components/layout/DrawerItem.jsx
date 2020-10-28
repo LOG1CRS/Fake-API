@@ -10,6 +10,7 @@ import {
   ListItemText,
   Button,
   Typography,
+  Hidden,
 } from '@material-ui/core';
 import {
   Home,
@@ -25,10 +26,12 @@ import {
   about,
   repo,
   support,
+  signin,
+  signup,
   license,
 } from '../../routes/routes.json';
 
-import fakeLogo from '../../assets/static/Fake-icon.png';
+import fakeLogo from '../../assets/static/Fake-drawer.png';
 
 const styles = makeStyles((theme) => ({
   drawer: {
@@ -57,17 +60,17 @@ const styles = makeStyles((theme) => ({
   toolbar: theme.mixins.toolbar,
   drawerImg: {
     [theme.breakpoints.only('md')]: {
-      width: 85,
+      width: 200,
     },
     [theme.breakpoints.down('sm')]: {
-      width: 60,
+      width: 150,
     },
   },
   drawerImgContainer: {
     width: '100%',
     height: 150,
     [theme.breakpoints.down('sm')]: {
-      height: 120,
+      height: 95,
     },
   },
   itemSpace: {
@@ -125,7 +128,7 @@ const DrawerItem = (props) => {
         justify="center"
         className={classes.drawerImgContainer}
       >
-        <Link to={home}>
+        <Link to={home} onClick={props.onClose ? props.onClose : null}>
           <img src={fakeLogo} alt="fake-icon" className={classes.drawerImg} />
         </Link>
       </Grid>
@@ -184,34 +187,64 @@ const DrawerItem = (props) => {
           </a>
           <Divider className={classes.itemSpace} />
           <ListItem className={classes.itemSpace}>
-            <Link to={support} className={classes.link}>
+            <Link to={signin} className={classes.link}>
+              <Button
+                variant="outlined"
+                color="inherit"
+                fullWidth
+                size="large"
+                onClick={props.onClose ? props.onClose : null}
+              >
+                Sign In
+              </Button>
+            </Link>
+          </ListItem>
+          <ListItem className={classes.itemSpace}>
+            <Link to={signup} className={classes.link}>
               <Button
                 variant="contained"
                 color="primary"
                 fullWidth
                 size="large"
-                startIcon={<Favorite />}
+                onClick={props.onClose ? props.onClose : null}
               >
-                Support
+                Sign Up
               </Button>
             </Link>
           </ListItem>
         </List>
       </Grid>
-      <Divider className={classes.itemSpace} />
-      <Grid container justify="center" className={classes.licenseContainer}>
-        <a
-          href={license}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={classes.link}
-          onClick={props.onClose ? props.onClose : null}
-        >
-          <Typography variant="body1" color="initial" align="center">
-            &copy; Mit License
-          </Typography>
-        </a>
-      </Grid>
+      <List component="nav" className={classes.list}>
+        <ListItem className={classes.itemSpace}>
+          <Link to={support} className={classes.link}>
+            <Button
+              variant="contained"
+              color="primary"
+              fullWidth
+              size="large"
+              startIcon={<Favorite />}
+            >
+              Support
+            </Button>
+          </Link>
+        </ListItem>
+      </List>
+      <Hidden only="xs">
+        <Divider className={classes.itemSpace} />
+        <Grid container justify="center" className={classes.licenseContainer}>
+          <a
+            href={license}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={classes.link}
+            onClick={props.onClose ? props.onClose : null}
+          >
+            <Typography variant="body1" color="initial" align="center">
+              &copy; Mit License
+            </Typography>
+          </a>
+        </Grid>
+      </Hidden>
     </Drawer>
   );
 };

@@ -4,5 +4,7 @@
   "about": "/about",
   "repo": "https://github.com/LOG1CRS/Fake-API",
   "support": "/support-us",
+  "signin": "/sign-in",
+  "signup": "/sign-up",
   "license": "https://github.com/LOG1CRS/Fake-API/blob/master/LICENSE"
 }

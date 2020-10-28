@@ -11,7 +11,15 @@ import {
 } from '@material-ui/core';
 import { Menu } from '@material-ui/icons';
 import { Link } from 'react-router-dom';
-import { home, docs, about, repo, support } from '../../routes/routes.json';
+import {
+  home,
+  docs,
+  about,
+  repo,
+  support,
+  signin,
+  signup,
+} from '../../routes/routes.json';
 
 import logoBW from '../../assets/static/Fake-logo-bw.png';
 
@@ -22,13 +30,24 @@ const useStyle = makeStyles((theme) => ({
     }),
   },
   navbarContentSpace: {
-    flexGrow: 1,
+    [theme.breakpoints.down('md')]: {
+      flexGrow: 1,
+    },
+    [theme.breakpoints.up('lg')]: {
+      width: 'calc(100vw / 3)',
+    },
+  },
+  contentNavbar: {
+    [theme.breakpoints.only('xl')]: {
+      marginTop: 10,
+      marginBottom: 10,
+    },
   },
   navbarImg: {
     transition: theme.transitions.create('background-color', {
       duration: theme.transitions.duration.complex,
     }),
-    width: 150,
+    width: 140,
     marginRight: 10,
     [theme.breakpoints.down('lg')]: {
       width: 120,
@@ -40,7 +59,6 @@ const useStyle = makeStyles((theme) => ({
     },
   },
   menuButton: {
-    paddingRight: 5,
     color: '#fff',
   },
   link: {
@@ -48,6 +66,30 @@ const useStyle = makeStyles((theme) => ({
   },
   navButton: {
     color: '#fff',
+    textTransform: 'none',
+    [theme.breakpoints.only('xl')]: {
+      fontSize: 18,
+    },
+    [theme.breakpoints.only('lg')]: {
+      fontSize: 14,
+    },
+  },
+  navSupportButton: {
+    textTransform: 'none',
+    [theme.breakpoints.only('xl')]: {
+      fontSize: 18,
+    },
+    [theme.breakpoints.only('lg')]: {
+      fontSize: 14,
+    },
+  },
+  signinButton: {
+    [theme.breakpoints.only('xl')]: {
+      marginRight: 25,
+    },
+    [theme.breakpoints.only('lg')]: {
+      marginRight: 20,
+    },
   },
 }));
 
@@ -58,7 +100,7 @@ const Navbar = (props) => {
     <>
       <ElevationScroll>
         <AppBar position="fixed" className={classes.appbar}>
-          <Toolbar>
+          <Toolbar className={classes.contentNavbar}>
             <div className={classes.navbarContentSpace}>
               <Link to={home}>
                 <img src={logoBW} alt="Logo" className={classes.navbarImg} />
@@ -66,20 +108,12 @@ const Navbar = (props) => {
             </div>
             <Hidden mdDown>
               <div className={classes.navbarContentSpace}>
-                <Grid container justify="space-evenly">
-                  <Link to={home} className={classes.link}>
-                    <Button
-                      variant="text"
-                      size="large"
-                      className={classes.navButton}
-                    >
-                      Home
-                    </Button>
-                  </Link>
+                <Grid container justify="space-between">
                   <Link to={docs} className={classes.link}>
                     <Button
                       variant="text"
                       size="large"
+                      color="primary"
                       className={classes.navButton}
                     >
                       Documentation
@@ -89,6 +123,7 @@ const Navbar = (props) => {
                     <Button
                       variant="text"
                       size="large"
+                      color="primary"
                       className={classes.navButton}
                     >
                       About
@@ -103,23 +138,44 @@ const Navbar = (props) => {
                     <Button
                       variant="text"
                       size="large"
+                      color="primary"
                       className={classes.navButton}
                     >
                       Repository
                     </Button>
                   </a>
+                  <Link to={support} className={classes.link}>
+                    <Button
+                      variant="text"
+                      color="primary"
+                      size="large"
+                      className={classes.navSupportButton}
+                    >
+                      Support
+                    </Button>
+                  </Link>
                 </Grid>
               </div>
               <div className={classes.navbarContentSpace}>
                 <Grid container justify="flex-end">
-                  <Link to={support} className={classes.link}>
+                  <Link to={signin} className={classes.link}>
+                    <Button
+                      variant="outlined"
+                      color="primary"
+                      size="large"
+                      className={`${classes.navButton} ${classes.signinButton}`}
+                    >
+                      Sign In
+                    </Button>
+                  </Link>
+                  <Link to={signup} className={classes.link}>
                     <Button
                       variant="contained"
                       color="primary"
                       size="large"
                       className={classes.navButton}
                     >
-                      Support
+                      Sign Up
                     </Button>
                   </Link>
                 </Grid>
@@ -127,7 +183,7 @@ const Navbar = (props) => {
             </Hidden>
             <Hidden lgUp>
               <IconButton
-                edge="start"
+                edge="end"
                 className={classes.menuButton}
                 aria-label="menu"
                 size="medium"
