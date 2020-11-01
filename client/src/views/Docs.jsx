@@ -1,11 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+
+import DocsMain from '../components/docs/DocsMain';
 
 const Docs = () => {
   return (
     <>
-      <h1>Fake-API Documentation</h1>
-      <Link to="/">Main</Link>
+      <DocsMain />
     </>
   );
 };

@@ -88,6 +88,9 @@ const useStyle = makeStyles((theme) => ({
   },
   footerButton: {
     color: '#fff',
+    '&:hover': {
+      backgroundColor: 'rgb(241, 192, 45, 0.35)',
+    },
   },
 }));
 

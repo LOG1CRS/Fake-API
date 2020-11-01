@@ -1,5 +1,5 @@
 import React from 'react';
-import ElevationScroll from './ElevationScroll';
+import ElevationScroll from '../../utils/ElevationScroll';
 import {
   makeStyles,
   AppBar,
@@ -73,6 +73,9 @@ const useStyle = makeStyles((theme) => ({
     [theme.breakpoints.only('lg')]: {
       fontSize: 14,
     },
+    '&:hover': {
+      backgroundColor: 'rgb(241, 192, 45, 0.35)',
+    },
   },
   navSupportButton: {
     textTransform: 'none',
@@ -81,6 +84,9 @@ const useStyle = makeStyles((theme) => ({
     },
     [theme.breakpoints.only('lg')]: {
       fontSize: 14,
+    },
+    '&:hover': {
+      backgroundColor: 'rgb(241, 192, 45, 0.35)',
     },
   },
   signinButton: {

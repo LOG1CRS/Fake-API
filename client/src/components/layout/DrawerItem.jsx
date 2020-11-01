@@ -223,6 +223,7 @@ const DrawerItem = (props) => {
               fullWidth
               size="large"
               startIcon={<Favorite />}
+              onClick={props.onClose ? props.onClose : null}
             >
               Support
             </Button>
