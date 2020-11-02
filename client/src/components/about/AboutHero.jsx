@@ -5,6 +5,7 @@ const useStyle = makeStyles((theme) => ({
   aboutHero: {
     width: '100%',
     height: '100vh',
+    backgroundColor: theme.palette.background.default,
   },
 }));
 

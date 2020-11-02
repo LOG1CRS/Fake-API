@@ -9,6 +9,7 @@ const useStyle = makeStyles((theme) => ({
     width: '100%',
     minHeight: '100vh',
     display: 'flex',
+    background: theme.palette.background.default,
   },
   drawer: {
     [theme.breakpoints.only('xl')]: {

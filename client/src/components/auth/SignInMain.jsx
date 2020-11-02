@@ -1,26 +1,34 @@
 import React from 'react';
-import { Grid, makeStyles, Typography } from '@material-ui/core';
+import { Grid, makeStyles, Container } from '@material-ui/core';
+
+import SignInContainer from './SignInContainer';
 
 const useStyle = makeStyles((theme) => ({
   signIn: {
     width: '100%',
     height: '100vh',
+    minHeight: 700,
+    backgroundColor: theme.palette.background.default,
+  },
+  signInSpace: {
+    width: '100%',
+    height: '100%',
   },
 }));
 
 const SignInMain = () => {
   const classes = useStyle();
   return (
-    <Grid
-      container
-      alignContent="center"
-      justify="center"
-      className={classes.signIn}
-    >
-      <Typography variant="h1" color="initial" align="center">
-        Sign In
-      </Typography>
-    </Grid>
+    <Container className={classes.signIn}>
+      <Grid
+        container
+        alignContent="center"
+        justify="center"
+        className={classes.signInSpace}
+      >
+        <SignInContainer />
+      </Grid>
+    </Container>
   );
 };
 

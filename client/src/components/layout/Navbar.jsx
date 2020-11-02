@@ -10,7 +10,7 @@ import {
   Grid,
 } from '@material-ui/core';
 import { Menu } from '@material-ui/icons';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import {
   home,
   docs,
@@ -42,6 +42,20 @@ const useStyle = makeStyles((theme) => ({
     [theme.breakpoints.only('xl')]: {
       marginTop: 10,
       marginBottom: 10,
+    },
+    [theme.breakpoints.only('md')]: {
+      marginTop: 10,
+      marginBottom: 10,
+    },
+    [theme.breakpoints.only('sm')]: {
+      marginTop: 2,
+      marginBottom: 2,
+    },
+    [theme.breakpoints.only('xs')]: {
+      marginTop: 2,
+      marginBottom: 2,
+      paddingLeft: 17,
+      paddingRight: 17,
     },
   },
   navbarImg: {
@@ -78,7 +92,7 @@ const useStyle = makeStyles((theme) => ({
       backgroundColor: 'rgb(241, 192, 45, 0.35)',
     },
   },
-  navSupportButton: {
+  navButtonActive: {
     textTransform: 'none',
     [theme.breakpoints.only('xl')]: {
       fontSize: 18,
@@ -103,6 +117,7 @@ const useStyle = makeStyles((theme) => ({
 const Navbar = (props) => {
   const { toggleOpen } = props;
   const classes = useStyle();
+  const route = useLocation();
   return (
     <>
       <ElevationScroll>
@@ -121,7 +136,11 @@ const Navbar = (props) => {
                       variant="text"
                       size="large"
                       color="primary"
-                      className={classes.navButton}
+                      className={
+                        route.pathname === '/docs'
+                          ? classes.navButtonActive
+                          : classes.navButton
+                      }
                     >
                       Documentation
                     </Button>
@@ -131,7 +150,11 @@ const Navbar = (props) => {
                       variant="text"
                       size="large"
                       color="primary"
-                      className={classes.navButton}
+                      className={
+                        route.pathname === '/about'
+                          ? classes.navButtonActive
+                          : classes.navButton
+                      }
                     >
                       About
                     </Button>
@@ -156,7 +179,11 @@ const Navbar = (props) => {
                       variant="text"
                       color="primary"
                       size="large"
-                      className={classes.navSupportButton}
+                      className={
+                        route.pathname === '/support-us'
+                          ? classes.navButtonActive
+                          : classes.navButton
+                      }
                     >
                       Support
                     </Button>
