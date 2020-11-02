@@ -4,14 +4,14 @@ import { useLocation } from 'react-router-dom';
 
 const ElevationScroll = (props) => {
   const { children, window } = props;
-  const [background, setBackground] = useState('transparent');
+  const [background, setBackground] = useState('secondary');
   const url = useLocation();
 
   useEffect(() => {
-    if (url.pathname === '/docs') {
-      setBackground('secondary');
-    } else {
+    if (url.pathname === '/') {
       setBackground('transparent');
+    } else {
+      setBackground('secondary');
     }
   }, [url]);
 

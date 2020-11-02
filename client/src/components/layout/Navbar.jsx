@@ -25,6 +25,7 @@ import logoBW from '../../assets/static/Fake-logo-bw.png';
 
 const useStyle = makeStyles((theme) => ({
   appbar: {
+    zIndex: 1301,
     transition: theme.transitions.create('background-color', {
       duration: theme.transitions.duration.complex,
     }),

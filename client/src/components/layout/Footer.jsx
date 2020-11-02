@@ -15,6 +15,7 @@ import footerImg from '../../assets/static/Fake-logo-color.png';
 const useStyle = makeStyles((theme) => ({
   footer: {
     width: '100%',
+    zIndex: theme.zIndex.drawer + 1,
     backgroundColor: theme.palette.secondary.main,
     [theme.breakpoints.only('xl')]: {
       height: 280,
