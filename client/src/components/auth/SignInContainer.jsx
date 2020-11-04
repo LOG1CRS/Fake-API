@@ -48,6 +48,9 @@ const useStyle = makeStyles((theme) => ({
   link: {
     textDecoration: 'none',
     color: '#709fe1',
+    '&:hover': {
+      color: '#3a70ba',
+    },
   },
   dialogActions: {
     paddingLeft: 25,
@@ -94,6 +97,7 @@ const SignInContainer = () => {
                   style: { color: '#000' },
                 }}
                 fullWidth
+                required
                 className={classes.signInInput}
               />
             </Grid>
@@ -103,6 +107,7 @@ const SignInContainer = () => {
                 color="primary"
                 variant="outlined"
                 type="password"
+                required
                 InputLabelProps={{
                   style: { color: '#000' },
                 }}
@@ -173,6 +178,9 @@ const SignInContainer = () => {
             color="primary"
             type="email"
             fullWidth
+            InputLabelProps={{
+              style: { color: '#000' },
+            }}
           />
         </DialogContent>
         <DialogActions className={classes.dialogActions}>
