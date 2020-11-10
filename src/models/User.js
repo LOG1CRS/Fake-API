@@ -1,5 +1,5 @@
-const { Schema, model } = require('mongoose');
-const Post = require('./Post');
+import { Schema, model } from 'mongoose';
+import Post from './Post';
 
 const UserSchema = new Schema(
   {

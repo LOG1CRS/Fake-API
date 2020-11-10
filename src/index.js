@@ -1,6 +1,9 @@
-require('dotenv').config();
-const app = require('./app');
-require('./database');
+import 'core-js/stable';
+import 'regenerator-runtime/runtime';
+
+import 'dotenv/config';
+import app from './app';
+import './database';
 
 // Initializing Server
 const main = async () => {

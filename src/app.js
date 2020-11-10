@@ -1,7 +1,8 @@
-const express = require('express');
-const cors = require('cors');
-const morgan = require('morgan');
-const path = require('path');
+import express from 'express';
+import cors from 'cors';
+import morgan from 'morgan';
+import path from 'path';
+import jwt from 'jsonwebtoken';
 
 // Import routes controllers
 const homeRoutes = require('./routes/client.routes');
@@ -22,7 +23,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 // Static files
-app.use(express.static(path.join(__dirname, 'client', 'build')));
+if (process.env.NODE_ENV === 'development') {
+  app.use(express.static(path.join(__dirname, '../', 'client', 'build')));
+} else if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, 'client')));
+}
 
 // Routes
 app.use('/api/users', userRoutes);

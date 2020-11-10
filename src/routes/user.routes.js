@@ -1,10 +1,10 @@
-const { Router } = require('express');
-const router = Router();
-const {
+import { Router } from 'express';
+import {
   getUsers,
   createUser,
   getSpecificUsers,
-} = require('../controllers/user.controller');
+} from '../controllers/user.controller';
+const router = Router();
 
 router.get('/', getUsers);
 

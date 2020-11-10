@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const MONGOOSE_URI = process.env.MONGOOSE_URI
   ? process.env.MONGOOSE_URI

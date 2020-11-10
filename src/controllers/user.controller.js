@@ -1,5 +1,5 @@
-const User = require('../models/User');
-const response = require('../templates/response_templates/response.json');
+import User from '../models/User';
+import response from '../templates/response_templates/response.json';
 
 const controller = {};
 

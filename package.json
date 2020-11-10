@@ -4,9 +4,12 @@
   "description": "An API about fake user profiles information, thought to help other developers test their social apps.",
   "main": "app.js",
   "scripts": {
-    "server": "nodemon index.js",
+    "start": "node build/index.js",
+    "server": "nodemon src/index.js --exec babel-node",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "build-server": "babel src --out-dir build --copy-files",
+    "build-client": "cd client && npm run build",
     "server-install": "npm install",
     "client-install": "cd client && npm install"
   },
@@ -22,14 +25,24 @@
   },
   "homepage": "https://github.com/LOG1CRS/Fake-API#readme",
   "dependencies": {
+    "-": "0.0.1",
+    "bcryptjs": "^2.4.3",
     "concurrently": "^5.3.0",
+    "core-js": "^3.7.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "helmet": "^4.2.0",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.10.6",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "regenerator-runtime": "^0.13.7"
   },
   "devDependencies": {
+    "@babel/cli": "^7.12.1",
+    "@babel/core": "^7.12.3",
+    "@babel/node": "^7.12.6",
+    "@babel/preset-env": "^7.12.1",
     "@types/express": "^4.17.8",
     "nodemon": "^2.0.4"
   }

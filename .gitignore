@@ -3,3 +3,6 @@
 
 # enviroments variables
 .env
+
+# Production
+/build
