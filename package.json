@@ -8,7 +8,7 @@
     "server": "nodemon src/index.js --exec babel-node",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "build-server": "babel src --out-dir build --copy-files",
+    "build": "babel src --out-dir build --copy-files",
     "build-client": "cd client && npm run build",
     "server-install": "npm install",
     "client-install": "cd client && npm install"

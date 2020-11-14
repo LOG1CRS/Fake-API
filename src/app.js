@@ -5,9 +5,9 @@ import path from 'path';
 import jwt from 'jsonwebtoken';
 
 // Import routes controllers
-const homeRoutes = require('./routes/client.routes');
-const apiRoutes = require('./routes/api.routes');
-const userRoutes = require('./routes/user.routes');
+import homeRoutes from './routes/client.routes';
+import apiRoutes from './routes/api.routes';
+import userRoutes from './routes/user.routes';
 
 // Initializing express
 const app = express();
@@ -34,4 +34,4 @@ app.use('/api/users', userRoutes);
 app.use('/api', apiRoutes);
 app.use('/', homeRoutes);
 
-module.exports = app;
+export default app;

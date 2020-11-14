@@ -21,4 +21,4 @@ const PostSchema = new Schema(
   { timestamps: true }
 );
 
-module.exports = model('Posts', PostSchema);
+export default model('Posts', PostSchema);

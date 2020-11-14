@@ -3,7 +3,9 @@ import {
   getUsers,
   createUser,
   getSpecificUsers,
+  userError,
 } from '../controllers/user.controller';
+
 const router = Router();
 
 router.get('/', getUsers);
@@ -12,9 +14,6 @@ router.post('/', createUser);
 
 router.get('/:id', getSpecificUsers);
 
-router.get('/*', (req, res) => {
-  res.status(404);
-  res.json('Error 404, Fake API cannot understand your request.');
-});
+router.get('/*', userError);
 
-module.exports = router;
+export default router;

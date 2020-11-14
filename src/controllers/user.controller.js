@@ -1,14 +1,13 @@
 import User from '../models/User';
 import response from '../templates/response_templates/response.json';
+import errorTemplate from '../templates/response_templates/error.json';
 
-const controller = {};
-
-controller.getUsers = async (req, res) => {
+export const getUsers = async (req, res) => {
   const users = await User.find();
   res.json(users);
 };
 
-controller.createUser = async (req, res) => {
+export const createUser = async (req, res) => {
   const { name, lastName, age, birthday, gender, email, cellphone } = req.body;
   const newUser = new User({
     name,
@@ -27,7 +26,7 @@ controller.createUser = async (req, res) => {
   }
 };
 
-controller.getSpecificUsers = async (req, res) => {
+export const getSpecificUsers = async (req, res) => {
   const required_ids = req.params['id'];
   const ids = required_ids.split(',');
   response.response.count = ids.length;
@@ -35,4 +34,7 @@ controller.getSpecificUsers = async (req, res) => {
   res.json(response);
 };
 
-module.exports = controller;
+export const userError = (req, res) => {
+  res.status(404);
+  res.json(errorTemplate);
+};
