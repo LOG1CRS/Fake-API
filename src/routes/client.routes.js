@@ -9,7 +9,7 @@ router.get('*', (req, res) => {
     });
   } else if (process.env.NODE_ENV === 'production') {
     res.sendFile('index.html', {
-      root: path.join(__dirname, 'client'),
+      root: path.join(__dirname, '../', 'client'),
     });
   }
 });
