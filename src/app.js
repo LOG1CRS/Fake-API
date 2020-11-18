@@ -2,12 +2,14 @@ import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
 import path from 'path';
+import favicon from 'serve-favicon';
 import jwt from 'jsonwebtoken';
 
 // Import routes controllers
 import homeRoutes from './routes/client.routes';
 import apiRoutes from './routes/api.routes';
 import userRoutes from './routes/user.routes';
+import authRoutes from './routes/auth.routes';
 
 // Initializing express
 const app = express();
@@ -25,13 +27,18 @@ app.use(express.json());
 // Static files
 if (process.env.NODE_ENV === 'development') {
   app.use(express.static(path.join(__dirname, '../', 'client', 'build')));
+  app.use(
+    favicon(path.join(__dirname, '../', 'client', 'build', 'Fake-icon.png'))
+  );
 } else if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, 'client')));
+  app.use(favicon(path.join(__dirname, 'client', 'Fake-icon.png')));
 }
 
 // Routes
 app.use('/api/users', userRoutes);
 app.use('/api', apiRoutes);
+app.use('/', authRoutes);
 app.use('/', homeRoutes);
 
 export default app;
