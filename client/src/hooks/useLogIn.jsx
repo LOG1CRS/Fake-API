@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import Swal from 'sweetalert2';
+import '../assets/style/customAlertDesign.css';
 
 const useLogIn = () => {
   const [formEmail, setFormEmail] = useState('');
@@ -14,14 +16,24 @@ const useLogIn = () => {
   const inputValidation = () => {
     // Email validation
     if (formEmail !== 'Any email on the DB') {
-      console.log('There is not a account registered with this email');
+      Swal.fire({
+        title: 'Invalid Email',
+        text: 'There is no account registered with this email.',
+        icon: 'error',
+        confirmButtonText: 'Ok!',
+      });
       setFormValidated(false);
       return;
     }
 
     // Email and password match
     if (formPassword.trim() !== 'Email password on the DB') {
-      console.log('Password incorrect');
+      Swal.fire({
+        title: 'Incorrect Password',
+        text: 'Please type the correct password.',
+        icon: 'error',
+        confirmButtonText: 'Ok!',
+      });
       setFormValidated(false);
       return;
     }

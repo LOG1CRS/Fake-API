@@ -8,6 +8,7 @@ const useStyle = makeStyles((theme) => ({
   signUp: {
     width: '100%',
     height: '100vh',
+    minHeight: 750,
     backgroundColor: theme.palette.background.default,
   },
   signUpSpace: {

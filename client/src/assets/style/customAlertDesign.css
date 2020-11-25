@@ -1,0 +1,17 @@
+.swal2-title {
+  font-family: 'Fira Sans', sans-serif !important;
+  /* font-size: 24px !important; */
+}
+
+.swal2-content {
+  font-family: 'Epilogue', sans-serif !important;
+  /* font-size: 17px !important; */
+  margin-top: 10px !important;
+}
+
+.swal2-confirm {
+  font-family: 'Lato', sans-serif !important;
+  background-color: #fbc02d !important;
+  /* font-size: 14px !important; */
+  border-radius: 7px !important;
+}

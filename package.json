@@ -4,10 +4,9 @@
   "description": "An API about fake user profiles information, thought to help other developers test their social apps.",
   "main": "app.js",
   "scripts": {
-    "start": "node build/index.js",
+    "start": "concurrently \"npm run server\" \"npm run client\"",
     "server": "nodemon src/index.js --exec babel-node",
     "client": "npm start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
     "build": "babel src --out-dir build --copy-files",
     "build-client": "cd client && npm run build",
     "server-install": "npm install",

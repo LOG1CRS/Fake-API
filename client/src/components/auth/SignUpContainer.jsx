@@ -18,15 +18,12 @@ const useStyle = makeStyles((theme) => ({
     maxWidth: 500,
     height: 520,
     borderRadius: 30,
-    [theme.breakpoints.only('xs')]: {
-      marginTop: 30,
-    },
     [theme.breakpoints.between('sm', 'md')]: {
       boxShadow: theme.shadows[7],
     },
   },
   signUpTitle: {
-    marginTop: 32,
+    marginTop: 10,
     marginBottom: 30,
     fontSize: 55,
   },
