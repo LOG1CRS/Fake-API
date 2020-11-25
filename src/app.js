@@ -6,7 +6,7 @@ import favicon from 'serve-favicon';
 import jwt from 'jsonwebtoken';
 
 // Import routes controllers
-import homeRoutes from './routes/client.routes';
+import clientRoutes from './routes/client.routes';
 import apiRoutes from './routes/api.routes';
 import userRoutes from './routes/user.routes';
 import authRoutes from './routes/auth.routes';
@@ -38,7 +38,7 @@ if (process.env.NODE_ENV === 'development') {
 // Routes
 app.use('/api/users', userRoutes);
 app.use('/api', apiRoutes);
-app.use('/', authRoutes);
-app.use('/', homeRoutes);
+app.use('/auth', authRoutes);
+app.use('/', clientRoutes);
 
 export default app;
