@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import validator from 'validator';
 import Swal from 'sweetalert2';
+import axios from 'axios';
 import '../assets/style/customAlertDesign.css';
 
 const useSignUp = () => {
@@ -12,7 +13,13 @@ const useSignUp = () => {
 
   useEffect(() => {
     if (formValidated) {
-      console.log('Sign Up validated');
+      axios
+        .post('http://localhost:9000/auth/sign-up', {
+          username: formName,
+          email: formEmail,
+          password: formPassword,
+        })
+        .then((res) => console.log(res));
     }
   }, [formValidated]);
 

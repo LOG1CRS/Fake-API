@@ -16,12 +16,10 @@ const webUserSchema = new Schema(
       type: String,
       required: true,
     },
-    roles: [
-      {
-        ref: 'Role',
-        type: Schema.Types.ObjectId,
-      },
-    ],
+    role: {
+      type: String,
+      required: true,
+    },
   },
   {
     timestamps: true,
@@ -35,10 +33,10 @@ webUserSchema.statics.encryptPassword = async (password) => {
 };
 
 webUserSchema.statics.comparePassword = async (
-  savedPassword,
-  receivedPassword
+  receivedPassword,
+  savedPassword
 ) => {
-  await bcrypt.compare(savedPassword, receivedPassword);
+  return await bcrypt.compare(receivedPassword, savedPassword);
 };
 
 export default model('WebUser', webUserSchema);

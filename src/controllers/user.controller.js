@@ -31,7 +31,7 @@ export const getSpecificUsers = async (req, res) => {
   const ids = required_ids.split(',');
   response.response.count = ids.length;
   response.results = ids;
-  res.json(response);
+  res.status(200).json(response);
 };
 
 export const userError = (req, res) => {
