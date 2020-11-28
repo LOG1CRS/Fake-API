@@ -1,6 +1,10 @@
 import WebUser from '../models/WebUser';
 import jwt from 'jsonwebtoken';
 
+export const authTest = (req, res) => {
+  res.status(200).json({ access: 'true' });
+};
+
 export const signUp = async (req, res) => {
   const { username, email, password } = req.body;
 
