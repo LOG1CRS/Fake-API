@@ -1,8 +1,12 @@
 import mongoose from 'mongoose';
 
-const MONGOOSE_URI = process.env.MONGOOSE_URI
-  ? process.env.MONGOOSE_URI
-  : 'mongodb://localhost/fake-api';
+let MONGOOSE_URI = '';
+
+if (process.env.NODE_ENV === 'production') {
+  MONGOOSE_URI = process.env.MONGOOSE_URI;
+} else {
+  MONGOOSE_URI = process.env.MONGOOSE_URI_DEV;
+}
 
 mongoose.connect(MONGOOSE_URI, {
   useUnifiedTopology: true,
