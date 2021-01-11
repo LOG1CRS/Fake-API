@@ -1,18 +1,30 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { ThemeProvider } from '@material-ui/core/styles';
-import { home, docs, about, support, signin, signup } from './routes.json';
-import RouterScrollToTop from '../utils/RouterScrollToTop';
+import {
+  home,
+  docs,
+  about,
+  support,
+  signin,
+  signup,
+  dashboard,
+} from './routes/routes.json';
+import RouterScrollToTop from './utils/RouterScrollToTop';
+import theme from './assets/style/themeConfig';
+import Layout from './components/layout/Layout';
+import ProtectedRoutes from './routes/ProtectedRoutes';
 
-import Layout from '../components/layout/Layout';
-import theme from '../assets/style/themeConfig';
-import Main from '../views/Main';
-import Docs from '../views/Docs';
-import NotFound from '../views/NotFound';
-import About from '../views/About';
-import Support from '../views/Support';
-import SignIn from '../views/SignIn';
-import SignUp from '../views/SignUp';
+import {
+  About,
+  Dashboard,
+  Docs,
+  Main,
+  NotFound,
+  SignIn,
+  SignUp,
+  Support,
+} from './views';
 
 const App = () => {
   return (
@@ -27,6 +39,7 @@ const App = () => {
             <Route exact path={support} component={Support} />
             <Route exact path={signin} component={SignIn} />
             <Route exact path={signup} component={SignUp} />
+            <ProtectedRoutes path={dashboard} Component={Dashboard} />
             <Route component={NotFound} />
           </Switch>
         </Layout>

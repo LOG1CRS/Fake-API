@@ -2,18 +2,24 @@ import { useState, useEffect } from 'react';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 import '../assets/style/customAlertDesign.css';
+import { useHistory } from 'react-router';
+import { dashboard } from '../routes/routes.json';
 
 const useLogIn = () => {
   const [formEmail, setFormEmail] = useState('');
   const [formPassword, setFormPassword] = useState('');
   const [formValidated, setFormValidated] = useState(false);
+  const history = useHistory();
 
   useEffect(() => {
     if (formValidated) {
-      axios.post('http://localhost:9000/auth/sign-in', {
-        email: formEmail,
-        password: formPassword,
-      });
+      axios
+        .post('http://localhost:9000/auth/sign-in', {
+          email: formEmail,
+          password: formPassword,
+        })
+        .then((res) => localStorage.setItem('token', res.data.token))
+        .then(() => history.push(dashboard));
     }
   }, [formValidated]);
 

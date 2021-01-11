@@ -6,5 +6,6 @@
   "support": "/support-us",
   "signin": "/sign-in",
   "signup": "/sign-up",
+  "dashboard": "/dashboard",
   "license": "https://github.com/LOG1CRS/Fake-API/blob/master/LICENSE"
 }
