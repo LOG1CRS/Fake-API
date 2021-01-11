@@ -10,6 +10,7 @@ import clientRoutes from './routes/client.routes';
 import apiRoutes from './routes/api.routes';
 import userRoutes from './routes/user.routes';
 import authRoutes from './routes/auth.routes';
+import webUserRoutes from './routes/webUser.routes';
 
 // Initializing express
 const app = express();
@@ -36,6 +37,7 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 // Routes
+app.use('/api/webUsers', webUserRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api', apiRoutes);
 app.use('/auth', authRoutes);

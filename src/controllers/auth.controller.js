@@ -8,6 +8,13 @@ export const authTest = (req, res) => {
 export const signUp = async (req, res) => {
   const { username, email, password } = req.body;
 
+  if (!username || !email || !password) {
+    res
+      .status(400)
+      .json({ error: 'Data required: email, username, and password' });
+    return;
+  }
+
   const userFound = await WebUser.findOne({ email });
 
   if (userFound) {
@@ -31,6 +38,11 @@ export const signUp = async (req, res) => {
 
 export const signIn = async (req, res) => {
   const { email, password } = req.body;
+
+  if (!email || !password) {
+    res.status(400).json({ error: 'Data required: email, and password' });
+    return;
+  }
 
   const userFound = await WebUser.findOne({ email });
 
