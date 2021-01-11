@@ -3,6 +3,8 @@ import validator from 'validator';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 import '../assets/style/customAlertDesign.css';
+import { useHistory } from 'react-router';
+import { dashboard } from '../routes/routes.json';
 
 const useSignUp = () => {
   const [formName, setFormName] = useState('');
@@ -10,6 +12,7 @@ const useSignUp = () => {
   const [formPassword, setFormPassword] = useState('');
   const [formPasswordConfirm, setFormPasswordConfirm] = useState('');
   const [formValidated, setFormValidated] = useState(false);
+  const history = useHistory();
 
   useEffect(() => {
     if (formValidated) {
@@ -19,7 +22,8 @@ const useSignUp = () => {
           email: formEmail,
           password: formPassword,
         })
-        .then((res) => console.log(res));
+        .then((res) => localStorage.setItem('token', res.data.token))
+        .then(() => history.push(dashboard));
     }
   }, [formValidated]);
 
