@@ -13,26 +13,20 @@ const ProtectedRoutes = (props) => {
     console.log(keyValue);
     if (!keyValue) {
       setTokenValidated(false);
+      return;
     }
 
     try {
-      await axios.post('localhost:9000/auth/validate-token', {
+      await axios.post('http://localhost:9000/auth/validate-token', {
         token: keyValue,
       });
     } catch (error) {
+      setTokenValidated(false);
+      localStorage.removeItem('token');
       const { message } = error;
       console.log({ message });
+      return;
     }
-
-    /*
-    try {
-      await Axios.post('localhost:9000/auth/validate-token', {
-        token: keyValue,
-      });
-    } catch (error) {
-      const { message } = error;
-      console.log({ message });
-    } */
   };
 
   useEffect(() => {
