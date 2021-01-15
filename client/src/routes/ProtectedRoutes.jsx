@@ -1,18 +1,44 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import { Route, Redirect } from 'react-router-dom';
+
 import { signin } from './routes.json';
 
 const ProtectedRoutes = (props) => {
   const { path, Component } = props;
   const [tokenValidated, setTokenValidated] = useState(true);
-  useEffect(() => {
+
+  const validateToken = async () => {
     const keyValue = localStorage.getItem('token');
+    console.log(keyValue);
     if (!keyValue) {
       setTokenValidated(false);
     }
 
-    console.log(keyValue);
+    try {
+      await axios.post('localhost:9000/auth/validate-token', {
+        token: keyValue,
+      });
+    } catch (error) {
+      const { message } = error;
+      console.log({ message });
+    }
+
+    /*
+    try {
+      await Axios.post('localhost:9000/auth/validate-token', {
+        token: keyValue,
+      });
+    } catch (error) {
+      const { message } = error;
+      console.log({ message });
+    } */
+  };
+
+  useEffect(() => {
+    validateToken();
   }, []);
+
   return (
     <Route
       path={path}
