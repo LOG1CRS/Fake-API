@@ -19,6 +19,7 @@ import {
   support,
   signin,
   signup,
+  dashboard,
 } from '../../routes/routes.json';
 import RenderIfAuth from '../../utils/RenderIfAuth';
 
@@ -211,7 +212,7 @@ const Navbar = (props) => {
                         Sign In
                       </Button>
                     </Link>
-                    <Link to={signup} className={classes.link}>
+                    <Link to={dashboard} className={classes.link}>
                       <Button
                         variant="contained"
                         color="primary"
@@ -234,6 +235,16 @@ const Navbar = (props) => {
                     >
                       Log Out
                     </Button>
+                    <Link to={dashboard} className={classes.link}>
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        size="large"
+                        className={classes.navButton}
+                      >
+                        Dashboard
+                      </Button>
+                    </Link>
                   </Grid>
                 </RenderIfAuth>
               </div>

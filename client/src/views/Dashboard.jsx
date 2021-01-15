@@ -18,7 +18,12 @@ const Dashboard = () => {
       alignContent="center"
       className={classes.dashboard}
     >
-      <Typography variant="h1" color="initial" align="center">
+      <Typography
+        variant="h1"
+        color="initial"
+        align="center"
+        style={{ fontSize: 40 }}
+      >
         Dashboard
       </Typography>
     </Grid>

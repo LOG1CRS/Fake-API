@@ -19,7 +19,7 @@ import {
   GitHub,
   Favorite,
 } from '@material-ui/icons';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import {
   home,
   docs,
@@ -29,7 +29,9 @@ import {
   signin,
   signup,
   license,
+  dashboard,
 } from '../../routes/routes.json';
+import RenderIfAuth from '../../utils/RenderIfAuth';
 
 import fakeLogo from '../../assets/static/Fake-drawer.png';
 
@@ -114,6 +116,14 @@ const styles = makeStyles((theme) => ({
 
 const DrawerItem = (props) => {
   const classes = styles();
+  const history = useHistory();
+
+  const handleLogOut = () => {
+    localStorage.removeItem('token');
+    props.onClose();
+    history.push(home);
+  };
+
   return (
     <Drawer
       className={classes.drawer}
@@ -187,32 +197,60 @@ const DrawerItem = (props) => {
             </ListItem>
           </a>
           <Divider className={classes.itemSpace} />
-          <ListItem className={classes.itemSpace}>
-            <Link to={signin} className={classes.link}>
+          <RenderIfAuth ifNot>
+            <ListItem className={classes.itemSpace}>
+              <Link to={signin} className={classes.link}>
+                <Button
+                  variant="outlined"
+                  color="inherit"
+                  fullWidth
+                  size="large"
+                  onClick={props.onClose ? props.onClose : null}
+                >
+                  Sign In
+                </Button>
+              </Link>
+            </ListItem>
+            <ListItem className={classes.itemSpace}>
+              <Link to={signup} className={classes.link}>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  fullWidth
+                  size="large"
+                  onClick={props.onClose ? props.onClose : null}
+                >
+                  Sign Up
+                </Button>
+              </Link>
+            </ListItem>
+          </RenderIfAuth>
+          <RenderIfAuth>
+            <ListItem className={classes.itemSpace}>
+              <Link to={dashboard} className={classes.link}>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  fullWidth
+                  size="large"
+                  onClick={props.onClose ? props.onClose : null}
+                >
+                  Dashboard
+                </Button>
+              </Link>
+            </ListItem>
+            <ListItem className={classes.itemSpace}>
               <Button
                 variant="outlined"
                 color="inherit"
                 fullWidth
                 size="large"
-                onClick={props.onClose ? props.onClose : null}
+                onClick={() => handleLogOut()}
               >
-                Sign In
+                Log Out
               </Button>
-            </Link>
-          </ListItem>
-          <ListItem className={classes.itemSpace}>
-            <Link to={signup} className={classes.link}>
-              <Button
-                variant="contained"
-                color="primary"
-                fullWidth
-                size="large"
-                onClick={props.onClose ? props.onClose : null}
-              >
-                Sign Up
-              </Button>
-            </Link>
-          </ListItem>
+            </ListItem>
+          </RenderIfAuth>
         </List>
       </Grid>
       <List component="nav" className={classes.list}>
