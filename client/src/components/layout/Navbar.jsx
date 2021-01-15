@@ -10,7 +10,7 @@ import {
   Grid,
 } from '@material-ui/core';
 import { Menu } from '@material-ui/icons';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useHistory } from 'react-router-dom';
 import {
   home,
   docs,
@@ -20,6 +20,7 @@ import {
   signin,
   signup,
 } from '../../routes/routes.json';
+import RenderIfAuth from '../../utils/RenderIfAuth';
 
 import logoBW from '../../assets/static/Fake-logo-bw.png';
 
@@ -118,6 +119,13 @@ const Navbar = (props) => {
   const { toggleOpen } = props;
   const classes = useStyle();
   const route = useLocation();
+  const history = useHistory();
+
+  const handleLogOut = () => {
+    localStorage.removeItem('token');
+    history.push(home);
+  };
+
   return (
     <>
       <ElevationScroll>
@@ -191,28 +199,43 @@ const Navbar = (props) => {
                 </Grid>
               </div>
               <div className={classes.navbarContentSpace}>
-                <Grid container justify="flex-end">
-                  <Link to={signin} className={classes.link}>
+                <RenderIfAuth ifNot>
+                  <Grid container justify="flex-end">
+                    <Link to={signin} className={classes.link}>
+                      <Button
+                        variant="outlined"
+                        color="primary"
+                        size="large"
+                        className={`${classes.navButton} ${classes.signinButton}`}
+                      >
+                        Sign In
+                      </Button>
+                    </Link>
+                    <Link to={signup} className={classes.link}>
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        size="large"
+                        className={classes.navButton}
+                      >
+                        Sign Up
+                      </Button>
+                    </Link>
+                  </Grid>
+                </RenderIfAuth>
+                <RenderIfAuth>
+                  <Grid container justify="flex-end">
                     <Button
                       variant="outlined"
                       color="primary"
                       size="large"
                       className={`${classes.navButton} ${classes.signinButton}`}
+                      onClick={() => handleLogOut()}
                     >
-                      Sign In
+                      Log Out
                     </Button>
-                  </Link>
-                  <Link to={signup} className={classes.link}>
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      size="large"
-                      className={classes.navButton}
-                    >
-                      Sign Up
-                    </Button>
-                  </Link>
-                </Grid>
+                  </Grid>
+                </RenderIfAuth>
               </div>
             </Hidden>
             <Hidden lgUp>
