@@ -1,16 +1,24 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { signin } from './routes.json';
 
 const ProtectedRoutes = (props) => {
   const { path, Component } = props;
-  useEffect(() => {}, []);
+  const [tokenValidated, setTokenValidated] = useState(true);
+  useEffect(() => {
+    const keyValue = localStorage.getItem('token');
+    if (!keyValue) {
+      setTokenValidated(false);
+    }
+
+    console.log(keyValue);
+  }, []);
   return (
     <Route
       path={path}
       exact
       render={() => {
-        if (localStorage.getItem('token')) {
+        if (tokenValidated) {
           return <Component />;
         } else {
           return <Redirect to={signin} />;
