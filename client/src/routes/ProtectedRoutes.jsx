@@ -10,7 +10,7 @@ const ProtectedRoutes = (props) => {
 
   const validateToken = async () => {
     const keyValue = localStorage.getItem('token');
-    console.log(keyValue);
+
     if (!keyValue) {
       setTokenValidated(false);
       return;
