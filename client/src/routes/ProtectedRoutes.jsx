@@ -17,9 +17,11 @@ const ProtectedRoutes = (props) => {
     }
 
     try {
-      await axios.post('http://localhost:9000/auth/validate-token', {
-        token: keyValue,
-      });
+      await axios.post(
+        'http://localhost:9000/auth/validate-token',
+        {},
+        { headers: { authorization: `Bearer ${keyValue}` } }
+      );
     } catch (error) {
       setTokenValidated(false);
       localStorage.removeItem('token');
