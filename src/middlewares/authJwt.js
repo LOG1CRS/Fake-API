@@ -6,7 +6,10 @@ const tokenValidation = async (req, res) => {
   let token = '';
 
   if (!authorization) {
-    res.status(403).json({ error: 'Token provided incorrectly' });
+    res.status(407).json({
+      error: 'Proxy Authentication Required ',
+      message: 'Authorization header missing',
+    });
     return -1;
   }
 
@@ -14,7 +17,7 @@ const tokenValidation = async (req, res) => {
   token = bearerToken[1];
 
   if (!token) {
-    res.status(403).json({ error: 'No token provider' });
+    res.status(403).json({ error: 'Forbidden', message: 'No token provider' });
     return -1;
   }
 
@@ -24,7 +27,9 @@ const tokenValidation = async (req, res) => {
     decoded = jwt.verify(token, process.env.SECRET);
   } catch (err) {
     const { message } = err;
-    res.status(400).json({ error: 'Token invalid', message });
+    res
+      .status(401)
+      .json({ error: 'Unauthorized', message: 'Token invalid', message });
     return -1;
   }
 
@@ -32,7 +37,7 @@ const tokenValidation = async (req, res) => {
   const user = await WebUser.findById(req.userId);
 
   if (!user) {
-    res.status(404).json({ error: 'No user found' });
+    res.status(401).json({ error: 'Unauthorized', message: 'No user found' });
     return -1;
   }
 
@@ -50,5 +55,5 @@ export const validateToken = async (req, res) => {
   if ((await tokenValidation(req, res)) === -1) {
     return;
   }
-  res.json({ text: 'User validated' });
+  res.json({ message: 'User validated' });
 };
