@@ -9,11 +9,13 @@ import {
   signin,
   signup,
   dashboard,
+  newUser,
 } from './routes/routes.json';
 import RouterScrollToTop from './utils/RouterScrollToTop';
 import theme from './assets/style/themeConfig';
 import Layout from './components/layout/Layout';
 import ProtectedRoutes from './routes/ProtectedRoutes';
+import NewUserForm from './components/dashboard/NewUserForm';
 
 import {
   About,
@@ -40,6 +42,7 @@ const App = () => {
             <Route exact path={signin} component={SignIn} />
             <Route exact path={signup} component={SignUp} />
             <ProtectedRoutes path={dashboard} Component={Dashboard} />
+            <ProtectedRoutes path={newUser} Component={NewUserForm} />
             <Route component={NotFound} />
           </Switch>
         </Layout>
