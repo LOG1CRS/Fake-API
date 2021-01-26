@@ -3,13 +3,10 @@ import {
   Typography,
   Grid,
   makeStyles,
-  OutlinedInput,
-  RadioGroup,
-  FormControlLabel,
-  Radio,
-  FormControl,
+  TextField,
   Button,
   Container,
+  Hidden,
 } from '@material-ui/core';
 
 import { PersonAdd } from '@material-ui/icons';
@@ -17,15 +14,13 @@ import { PersonAdd } from '@material-ui/icons';
 const useStyle = makeStyles((theme) => ({
   container: {
     width: '100%',
-    height: '101vh',
-    [theme.breakpoints.only('xs')]: {
-      height: '100%',
-      padding: theme.spacing(2),
-    },
+    minHeight: '100vh',
+    display: 'flex',
     backgroundColor: theme.palette.background.default,
-  },
-  gridContainer: {
-    height: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingTop: 80,
+    paddingBottom: 50,
   },
   radio: {
     color: theme.palette.secondary.main,
@@ -37,135 +32,117 @@ const NewUserForm = () => {
 
   return (
     <Container className={classes.container}>
-      <Grid
-        container
-        justify="center"
-        alignContent="center"
-        spacing={3}
-        className={classes.gridContainer}
-      >
+      <Grid container justify="center" spacing={4}>
         <Grid item xs={12}>
           <Typography
             variant="h1"
-            color="initial"
+            color="primary"
             align="center"
-            style={{ fontSize: 40 }}
+            style={{ fontSize: 60, marginBottom: 20 }}
           >
             New User
           </Typography>
         </Grid>
-        <Grid item xs={12} lg={8}>
-          <form>
-            <Grid container justify="center">
-              <Grid item xs={12} sm={6}>
-                <Grid
-                  container
-                  justify="center"
-                  className={classes.gridContainer}
-                >
-                  <Grid item xs={12}>
-                    <Typography align="center" variant="h6">
-                      Nombre
-                    </Typography>
-                  </Grid>
-                  <OutlinedInput />
-                  <Grid item xs={12}>
-                    <Typography align="center" variant="h6">
-                      Edad
-                    </Typography>
-                  </Grid>
-                  <OutlinedInput type="number" />
-                </Grid>
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <Grid
-                  container
-                  justify="center"
-                  className={classes.gridContainer}
-                >
-                  <Grid item xs={12}>
-                    <Typography align="center" variant="h6">
-                      Apellido Materno
-                    </Typography>
-                  </Grid>
-                  <OutlinedInput />
-                  <Grid item xs={12}>
-                    <Typography align="center" variant="h6">
-                      Apellido Paterno
-                    </Typography>
-                  </Grid>
-                  <Grid item xs={12}>
-                    <Grid container justify="center">
-                      <OutlinedInput />
-                    </Grid>
-                  </Grid>
-                </Grid>
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <Grid
-                  container
-                  justify="center"
-                  className={classes.gridContainer}
-                >
-                  <Grid item xs={12}>
-                    <Typography align="center" variant="h6">
-                      Fecha de Nacimiento
-                    </Typography>
-                  </Grid>
-                  <OutlinedInput type="date" />
-                  <Grid item xs={12}>
-                    <Typography align="center" variant="h6">
-                      Sexo
-                    </Typography>
-                  </Grid>
-                  <FormControl component="fieldset">
-                    <RadioGroup aria-label="gender" row>
-                      <FormControlLabel
-                        value="masculino"
-                        control={<Radio className={classes.radio} />}
-                        label="Masculino"
-                      />
-                      <FormControlLabel
-                        value="femenino"
-                        control={<Radio className={classes.radio} />}
-                        label="Femenino"
-                      />
-                    </RadioGroup>
-                  </FormControl>
-                </Grid>
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <Grid
-                  container
-                  justify="center"
-                  className={classes.gridContainer}
-                >
-                  <Grid item xs={12}>
-                    <Typography align="center" variant="h6">
-                      Email
-                    </Typography>
-                  </Grid>
-                  <OutlinedInput type="email" />
-                  <Grid item xs={12}>
-                    <Typography align="center" variant="h6">
-                      Telefono
-                    </Typography>
-                  </Grid>
-                  <OutlinedInput type="tel" />
-                </Grid>
-              </Grid>
-            </Grid>
-          </form>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            variant="outlined"
+            color="primary"
+            label="Name"
+            InputLabelProps={{
+              style: { color: '#000' },
+            }}
+            fullWidth
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            variant="outlined"
+            color="primary"
+            label="Last Name"
+            InputLabelProps={{
+              style: { color: '#000' },
+            }}
+            fullWidth
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            variant="outlined"
+            color="primary"
+            label="Age"
+            InputLabelProps={{
+              style: { color: '#000' },
+            }}
+            fullWidth
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            variant="outlined"
+            color="primary"
+            label="Birthday"
+            InputLabelProps={{
+              style: { color: '#000' },
+            }}
+            fullWidth
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            variant="outlined"
+            color="primary"
+            label="Gender"
+            InputLabelProps={{
+              style: { color: '#000' },
+            }}
+            fullWidth
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            variant="outlined"
+            color="primary"
+            label="Cellphone"
+            InputLabelProps={{
+              style: { color: '#000' },
+            }}
+            fullWidth
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            variant="outlined"
+            color="primary"
+            label="Email"
+            InputLabelProps={{
+              style: { color: '#000' },
+            }}
+            fullWidth
+          />
         </Grid>
         <Grid item xs={12}>
-          <Grid container justify="center">
-            <Button
-              variant="contained"
-              color="primary"
-              startIcon={<PersonAdd />}
-            >
-              Crear
-            </Button>
+          <Grid container justify="flex-end">
+            <Hidden only="xs">
+              <Button
+                variant="contained"
+                color="primary"
+                size="large"
+                startIcon={<PersonAdd />}
+              >
+                Crear
+              </Button>
+            </Hidden>
+            <Hidden smUp>
+              <Button
+                variant="contained"
+                color="primary"
+                size="large"
+                startIcon={<PersonAdd />}
+                fullWidth
+              >
+                Crear
+              </Button>
+            </Hidden>
           </Grid>
         </Grid>
       </Grid>
