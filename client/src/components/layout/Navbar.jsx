@@ -18,7 +18,6 @@ import {
   repo,
   support,
   signin,
-  signup,
   dashboard,
 } from '../../routes/routes.json';
 import RenderIfAuth from '../../utils/RenderIfAuth';
@@ -27,7 +26,7 @@ import logoBW from '../../assets/static/Fake-logo-bw.png';
 
 const useStyle = makeStyles((theme) => ({
   appbar: {
-    zIndex: 1301,
+    zIndex: 1298,
     transition: theme.transitions.create('background-color', {
       duration: theme.transitions.duration.complex,
     }),

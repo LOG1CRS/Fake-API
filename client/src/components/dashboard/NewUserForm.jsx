@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   Typography,
   Grid,
@@ -16,20 +16,19 @@ import genders from '../../assets/constants/genders.json';
 const useStyle = makeStyles((theme) => ({
   container: {
     width: '100%',
-    minHeight: '100vh',
     display: 'flex',
     backgroundColor: theme.palette.background.default,
     alignItems: 'center',
     justifyContent: 'center',
-    paddingTop: 80,
-    paddingBottom: 50,
+    paddingBottom: 25,
   },
   radio: {
     color: theme.palette.secondary.main,
   },
 }));
 
-const NewUserForm = () => {
+const NewUserForm = (props) => {
+  const { setCreateNewUser } = props;
   const classes = useStyle();
   const [
     setName,
@@ -39,21 +38,23 @@ const NewUserForm = () => {
     setGender,
     setCellphone,
     handleSubmit,
+    created,
   ] = useNewUser();
+
+  useEffect(() => {
+    if (created) {
+      setCreateNewUser(false);
+    }
+  }, [created]);
+
+  const buttonHandler = (e) => {
+    e.preventDefault();
+    handleSubmit();
+  };
 
   return (
     <Container className={classes.container}>
       <Grid container justify="center" spacing={4}>
-        <Grid item xs={12}>
-          <Typography
-            variant="h1"
-            color="primary"
-            align="center"
-            style={{ fontSize: 60, marginBottom: 20 }}
-          >
-            New User
-          </Typography>
-        </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
             variant="outlined"

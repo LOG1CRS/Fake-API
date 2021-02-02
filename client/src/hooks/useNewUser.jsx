@@ -1,12 +1,9 @@
 import { useState, useEffect, useCallback } from 'react';
-import { useHistory } from 'react-router-dom';
 import Axios from 'axios';
 import Swal from 'sweetalert2';
 import validator from 'validator';
-import { dashboard } from '../routes/routes.json';
 
 const useNewUser = () => {
-  const history = useHistory();
   const [name, setName] = useState();
   const [lastName, setLastName] = useState();
   const [email, setEmail] = useState();
@@ -14,7 +11,7 @@ const useNewUser = () => {
   const [gender, setGender] = useState();
   const [cellphone, setCellphone] = useState();
   const [validated, setValidated] = useState(false);
-
+  const [created, setCreated] = useState(false);
   const saveUserData = useCallback(async () => {
     const currentYear = new Date().getFullYear();
     const birthdayYear = new Date(birthday).getFullYear();
@@ -38,8 +35,8 @@ const useNewUser = () => {
         'error'
       );
     }
-    history.push(dashboard);
-  }, [name, lastName, birthday, gender, email, cellphone, history]);
+    setCreated(true);
+  }, [name, lastName, birthday, gender, email, cellphone]);
 
   useEffect(() => {
     if (validated === true) {
@@ -100,6 +97,7 @@ const useNewUser = () => {
     setGender,
     setCellphone,
     handleSubmit,
+    created,
   ];
 };
 
