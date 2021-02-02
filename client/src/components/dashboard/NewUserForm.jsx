@@ -9,7 +9,9 @@ import {
   Hidden,
 } from '@material-ui/core';
 import { PersonAdd } from '@material-ui/icons';
+import { Autocomplete } from '@material-ui/lab';
 import useNewUser from '../../hooks/useNewUser';
+import genders from '../../assets/constants/genders.json';
 
 const useStyle = makeStyles((theme) => ({
   container: {
@@ -91,15 +93,23 @@ const NewUserForm = () => {
           />
         </Grid>
         <Grid item xs={12} sm={6}>
-          <TextField
-            variant="outlined"
-            color="primary"
-            label="Gender"
-            InputLabelProps={{
-              style: { color: '#000' },
-            }}
-            onChange={(e) => setGender(e.target.value)}
-            fullWidth
+          <Autocomplete
+            options={genders}
+            getOptionLabel={(option) => option}
+            onChange={(e) => setGender(genders[e.target.value])}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                variant="outlined"
+                color="primary"
+                label="Gender"
+                InputLabelProps={{
+                  style: { color: '#000' },
+                }}
+                onChange={(e) => setGender(e.target.value)}
+                fullWidth
+              />
+            )}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
