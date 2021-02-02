@@ -8,8 +8,8 @@ import {
   Container,
   Hidden,
 } from '@material-ui/core';
-
 import { PersonAdd } from '@material-ui/icons';
+import useNewUser from '../../hooks/useNewUser';
 
 const useStyle = makeStyles((theme) => ({
   container: {
@@ -29,6 +29,15 @@ const useStyle = makeStyles((theme) => ({
 
 const NewUserForm = () => {
   const classes = useStyle();
+  const [
+    setName,
+    setLastName,
+    setEmail,
+    setBirthday,
+    setGender,
+    setCellphone,
+    handleSubmit,
+  ] = useNewUser();
 
   return (
     <Container className={classes.container}>
@@ -51,6 +60,7 @@ const NewUserForm = () => {
             InputLabelProps={{
               style: { color: '#000' },
             }}
+            onChange={(e) => setName(e.target.value)}
             fullWidth
           />
         </Grid>
@@ -62,17 +72,7 @@ const NewUserForm = () => {
             InputLabelProps={{
               style: { color: '#000' },
             }}
-            fullWidth
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            variant="outlined"
-            color="primary"
-            label="Age"
-            InputLabelProps={{
-              style: { color: '#000' },
-            }}
+            onChange={(e) => setLastName(e.target.value)}
             fullWidth
           />
         </Grid>
@@ -81,9 +81,12 @@ const NewUserForm = () => {
             variant="outlined"
             color="primary"
             label="Birthday"
+            type="date"
             InputLabelProps={{
               style: { color: '#000' },
+              shrink: true,
             }}
+            onChange={(e) => setBirthday(e.target.value)}
             fullWidth
           />
         </Grid>
@@ -95,6 +98,7 @@ const NewUserForm = () => {
             InputLabelProps={{
               style: { color: '#000' },
             }}
+            onChange={(e) => setGender(e.target.value)}
             fullWidth
           />
         </Grid>
@@ -106,6 +110,7 @@ const NewUserForm = () => {
             InputLabelProps={{
               style: { color: '#000' },
             }}
+            onChange={(e) => setCellphone(e.target.value)}
             fullWidth
           />
         </Grid>
@@ -117,6 +122,7 @@ const NewUserForm = () => {
             InputLabelProps={{
               style: { color: '#000' },
             }}
+            onChange={(e) => setEmail(e.target.value)}
             fullWidth
           />
         </Grid>
@@ -128,17 +134,19 @@ const NewUserForm = () => {
                 color="primary"
                 size="large"
                 startIcon={<PersonAdd />}
+                onClick={handleSubmit}
               >
                 Crear
               </Button>
             </Hidden>
             <Hidden smUp>
               <Button
+                fullWidth
                 variant="contained"
                 color="primary"
                 size="large"
                 startIcon={<PersonAdd />}
-                fullWidth
+                onClick={handleSubmit}
               >
                 Crear
               </Button>
