@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
-import { makeStyles, Grid, Typography, Button } from '@material-ui/core';
+import {
+  makeStyles,
+  Grid,
+  Typography,
+  Button,
+  Container,
+  Hidden,
+} from '@material-ui/core';
 import { PersonAdd } from '@material-ui/icons';
-import { newUser } from '../routes/routes.json';
-import { Link } from 'react-router-dom';
 import UserInputDialog from '../components/dashboard/UserInputDialog';
 import NewUserForm from '../components/dashboard/NewUserForm';
 
@@ -11,6 +16,20 @@ const useStyle = makeStyles((theme) => ({
     width: '100%',
     height: '100vh',
     backgroundColor: theme.palette.background.default,
+  },
+  title: {
+    fontSize: 55,
+    [theme.breakpoints.down('lg')]: {
+      fontSize: 45,
+    },
+    [theme.breakpoints.only('xs')]: {
+      fontSize: 40,
+    },
+  },
+  userList: {
+    height: '100%',
+    backgroundColor: '#e8e8e8',
+    borderRadius: '30px 30px 0 0',
   },
   link: {
     textDecoration: 'none',
@@ -22,35 +41,68 @@ const Dashboard = () => {
   const [createNewUser, setCreateNewUser] = useState(false);
   return (
     <>
-      <Grid
-        container
-        justify="center"
-        alignContent="center"
-        className={classes.dashboard}
-      >
-        <Grid item>
-          <Grid container justify="center">
-            <Grid item xs={12}>
-              <Typography
-                variant="h1"
-                color="initial"
-                align="center"
-                style={{ fontSize: 40 }}
-              >
-                Dashboard
-              </Typography>
+      <Container className={classes.dashboard}>
+        <Grid container style={{ height: '100%' }}>
+          <Grid
+            container
+            justify="center"
+            alignItems="flex-end"
+            style={{ height: '25%', paddingBottom: 30 }}
+          >
+            <Grid item xs={12} sm={6}>
+              <Hidden only="xs">
+                <Typography
+                  variant="h1"
+                  color="primary"
+                  className={classes.title}
+                >
+                  Your Users
+                </Typography>
+              </Hidden>
+              <Hidden smUp>
+                <Typography
+                  variant="h1"
+                  color="primary"
+                  align="center"
+                  className={classes.title}
+                >
+                  Your Users
+                </Typography>
+              </Hidden>
             </Grid>
-            <Button
-              startIcon={<PersonAdd />}
-              color="primary"
-              variant="contained"
-              onClick={() => setCreateNewUser(true)}
-            >
-              Añadir Usuario
-            </Button>
+            <Grid item xs={12} sm={6}>
+              <Grid container justify="flex-end">
+                <Hidden only="xs">
+                  <Button
+                    startIcon={<PersonAdd />}
+                    color="primary"
+                    variant="contained"
+                    size="large"
+                    onClick={() => setCreateNewUser(true)}
+                  >
+                    Añadir Usuario
+                  </Button>
+                </Hidden>
+                <Hidden smUp>
+                  <Button
+                    startIcon={<PersonAdd />}
+                    color="primary"
+                    variant="contained"
+                    size="large"
+                    fullWidth
+                    onClick={() => setCreateNewUser(true)}
+                  >
+                    Añadir Usuario
+                  </Button>
+                </Hidden>
+              </Grid>
+            </Grid>
+          </Grid>
+          <Grid container style={{ height: '75%' }}>
+            <Grid item xs={12} className={classes.userList}></Grid>
           </Grid>
         </Grid>
-      </Grid>
+      </Container>
       <UserInputDialog
         open={createNewUser}
         setOpen={setCreateNewUser}
