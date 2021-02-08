@@ -21,9 +21,20 @@ const useStyle = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'center',
     paddingBottom: 25,
+    [theme.breakpoints.only('xs')]: {
+      padding: 0,
+    },
   },
   radio: {
     color: theme.palette.secondary.main,
+  },
+  input: {
+    [theme.breakpoints.up('sm')]: {
+      paddingLeft: 16,
+      paddingRight: 16,
+    },
+    paddingTop: 16,
+    paddingBottom: 16,
   },
 }));
 
@@ -54,8 +65,8 @@ const NewUserForm = (props) => {
 
   return (
     <Container className={classes.container}>
-      <Grid container justify="center" spacing={4}>
-        <Grid item xs={12} sm={6}>
+      <Grid container justify="center">
+        <Grid item xs={12} sm={6} className={classes.input}>
           <TextField
             variant="outlined"
             color="primary"
@@ -67,7 +78,7 @@ const NewUserForm = (props) => {
             fullWidth
           />
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} sm={6} className={classes.input}>
           <TextField
             variant="outlined"
             color="primary"
@@ -79,7 +90,7 @@ const NewUserForm = (props) => {
             fullWidth
           />
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} sm={6} className={classes.input}>
           <TextField
             variant="outlined"
             color="primary"
@@ -93,7 +104,7 @@ const NewUserForm = (props) => {
             fullWidth
           />
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} sm={6} className={classes.input}>
           <Autocomplete
             options={genders}
             getOptionLabel={(option) => option}
@@ -113,7 +124,7 @@ const NewUserForm = (props) => {
             )}
           />
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} sm={6} className={classes.input}>
           <TextField
             variant="outlined"
             color="primary"
@@ -125,7 +136,7 @@ const NewUserForm = (props) => {
             fullWidth
           />
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} sm={6} className={classes.input}>
           <TextField
             variant="outlined"
             color="primary"
@@ -137,7 +148,7 @@ const NewUserForm = (props) => {
             fullWidth
           />
         </Grid>
-        <Grid item xs={12}>
+        <Grid item xs={12} className={classes.input}>
           <Grid container justify="flex-end">
             <Hidden only="xs">
               <Button
