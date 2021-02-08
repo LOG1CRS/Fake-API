@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import {
-  Typography,
   Grid,
   makeStyles,
   TextField,
@@ -56,12 +55,7 @@ const NewUserForm = (props) => {
     if (created) {
       setCreateNewUser(false);
     }
-  }, [created]);
-
-  const buttonHandler = (e) => {
-    e.preventDefault();
-    handleSubmit();
-  };
+  }, [created, setCreateNewUser]);
 
   return (
     <Container className={classes.container}>

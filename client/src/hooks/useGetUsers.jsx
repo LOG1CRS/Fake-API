@@ -3,27 +3,19 @@ import Axios from 'axios';
 
 const useGetUsers = () => {
   const [users, setUsers] = useState([]);
-  useEffect(async () => {
+  useEffect(() => {
     async function getUsers() {
+      let data = [];
       try {
-        return await Axios.get('http://localhost:9000/api/users');
+        data = await (await Axios.get('http://localhost:9000/api/users')).data;
       } catch (error) {
-        console.log(error);
+        console.error(error);
+      }
+      if (users.length === 0 && data.length !== 0) {
+        setUsers(data);
       }
     }
-
-    let data = [];
-
-    try {
-      const users = getUsers();
-      data = [...users.data];
-    } catch (error) {
-      console.error(error);
-    }
-
-    if (users.length === 0 && data.length !== 0) {
-      setUsers(data);
-    }
+    getUsers();
   }, [users]);
   return [users];
 };

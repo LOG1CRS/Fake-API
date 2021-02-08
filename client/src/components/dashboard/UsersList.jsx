@@ -1,21 +1,25 @@
 import React from 'react';
-import { Container, Typography, Grid } from '@material-ui/core';
+import { Container, Typography, Grid, Collapse } from '@material-ui/core';
 import useGetUsers from '../../hooks/useGetUsers';
 
 const UsersList = () => {
   const [users] = useGetUsers();
+
   return (
     <Container
-      style={{ height: '100%', alignItems: 'center', display: 'flex' }}
+      style={{
+        height: '100%',
+        alignItems: 'center',
+        justifyContent: 'center',
+        display: 'flex',
+      }}
     >
-      <Grid></Grid>
-      <Typography
-        variant="h2"
-        align="center"
-        style={{ width: '100%', opacity: 0.2 }}
-      >
-        No users created
-      </Typography>
+      <Collapse in={users.length === 0} style={{ position: 'absolute' }}>
+        <Typography variant="h2" align="center" style={{ opacity: 0.2 }}>
+          No users created
+        </Typography>
+      </Collapse>
+      <Grid container style={{ height: '100%' }}></Grid>
     </Container>
   );
 };
