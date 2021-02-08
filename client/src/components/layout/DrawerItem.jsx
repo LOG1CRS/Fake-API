@@ -240,6 +240,11 @@ const DrawerItem = (props) => {
               </Link>
             </ListItem>
             <ListItem className={classes.itemSpace}>
+              <Button variant="outlined" color="primary" fullWidth size="large">
+                Settings
+              </Button>
+            </ListItem>
+            <ListItem className={classes.itemSpace}>
               <Button
                 variant="outlined"
                 color="inherit"

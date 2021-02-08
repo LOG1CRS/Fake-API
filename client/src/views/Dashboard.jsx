@@ -25,6 +25,7 @@ const useStyle = makeStyles((theme) => ({
     },
     [theme.breakpoints.only('xs')]: {
       fontSize: 40,
+      marginTop: 30,
     },
   },
   userList: {
@@ -34,6 +35,24 @@ const useStyle = makeStyles((theme) => ({
   },
   link: {
     textDecoration: 'none',
+  },
+  dashboardTitle: {
+    height: '25%',
+    paddingBottom: 40,
+    [theme.breakpoints.only('xs')]: {
+      height: '35%',
+    },
+  },
+  dashboardList: {
+    height: '75%',
+    [theme.breakpoints.only('xs')]: {
+      height: '65%',
+    },
+  },
+  addUserButton: {
+    [theme.breakpoints.only('xs')]: {
+      marginTop: '-30px',
+    },
   },
 }));
 
@@ -48,7 +67,7 @@ const Dashboard = () => {
             container
             justify="center"
             alignItems="flex-end"
-            style={{ height: '25%', paddingBottom: 30 }}
+            className={classes.dashboardTitle}
           >
             <Grid item xs={12} sm={6}>
               <Hidden only="xs">
@@ -71,7 +90,7 @@ const Dashboard = () => {
                 </Typography>
               </Hidden>
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={6} className={classes.addUserButton}>
               <Grid container justify="flex-end">
                 <Hidden only="xs">
                   <Button

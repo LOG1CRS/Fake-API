@@ -22,7 +22,11 @@ const useSignUp = () => {
           email: formEmail,
           password: formPassword,
         })
-        .then((res) => localStorage.setItem('token', res.data.token))
+        .then((res) => {
+          localStorage.setItem('token', res.data.token);
+          const user = { name: formName, email: formEmail };
+          localStorage.setItem('user', JSON.stringify(user));
+        })
         .then(() => history.push(dashboard));
     }
   }, [formValidated]);
