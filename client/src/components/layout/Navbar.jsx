@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ElevationScroll from '../../utils/ElevationScroll';
 import {
   makeStyles,
@@ -8,8 +8,11 @@ import {
   Button,
   IconButton,
   Grid,
+  Avatar,
+  Menu,
+  MenuItem,
 } from '@material-ui/core';
-import { Menu } from '@material-ui/icons';
+import MenuIcon from '@material-ui/icons/Menu';
 import { Link, useLocation, useHistory } from 'react-router-dom';
 import {
   home,
@@ -19,6 +22,7 @@ import {
   support,
   signin,
   dashboard,
+  signup,
 } from '../../routes/routes.json';
 import RenderIfAuth from '../../utils/RenderIfAuth';
 
@@ -113,15 +117,27 @@ const useStyle = makeStyles((theme) => ({
       marginRight: 20,
     },
   },
+  avatar: {
+    backgroundColor: theme.palette.primary.main,
+    padding: 0,
+    fontSize: 25,
+  },
 }));
 
 const Navbar = (props) => {
   const { toggleOpen } = props;
+  const user = JSON.parse(localStorage.getItem('user'));
+  const [openMenu, setOpenMenu] = useState(false);
   const classes = useStyle();
   const route = useLocation();
   const history = useHistory();
 
+  const handleMenu = (e) => {
+    setOpenMenu(e.currentTarget);
+  };
+
   const handleLogOut = () => {
+    setOpenMenu(null);
     localStorage.removeItem('token');
     history.push(home);
   };
@@ -211,7 +227,7 @@ const Navbar = (props) => {
                         Sign In
                       </Button>
                     </Link>
-                    <Link to={dashboard} className={classes.link}>
+                    <Link to={signup} className={classes.link}>
                       <Button
                         variant="contained"
                         color="primary"
@@ -225,25 +241,34 @@ const Navbar = (props) => {
                 </RenderIfAuth>
                 <RenderIfAuth>
                   <Grid container justify="flex-end">
-                    <Button
-                      variant="outlined"
-                      color="primary"
-                      size="large"
-                      className={`${classes.navButton} ${classes.signinButton}`}
-                      onClick={() => handleLogOut()}
+                    <IconButton size="medium" onClick={handleMenu}>
+                      <Avatar className={classes.avatar}>{user.name[0]}</Avatar>
+                    </IconButton>
+                    <Menu
+                      anchorEl={openMenu}
+                      keepMounted
+                      open={Boolean(openMenu)}
+                      onClose={() => setOpenMenu(null)}
                     >
-                      Log Out
-                    </Button>
-                    <Link to={dashboard} className={classes.link}>
-                      <Button
-                        variant="contained"
-                        color="primary"
-                        size="large"
-                        className={classes.navButton}
+                      <MenuItem
+                        onClick={() => {
+                          setOpenMenu(null);
+                          history.push(dashboard);
+                        }}
                       >
                         Dashboard
-                      </Button>
-                    </Link>
+                      </MenuItem>
+                      <MenuItem
+                        onClick={() => {
+                          setOpenMenu(null);
+                        }}
+                      >
+                        Settings
+                      </MenuItem>
+                      <MenuItem onClick={() => handleLogOut()}>
+                        Log Out
+                      </MenuItem>
+                    </Menu>
                   </Grid>
                 </RenderIfAuth>
               </div>
@@ -256,7 +281,7 @@ const Navbar = (props) => {
                 size="medium"
                 onClick={() => toggleOpen()}
               >
-                <Menu />
+                <MenuIcon />
               </IconButton>
             </Hidden>
           </Toolbar>
