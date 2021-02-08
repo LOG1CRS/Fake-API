@@ -10,6 +10,7 @@ import {
 import { PersonAdd } from '@material-ui/icons';
 import UserInputDialog from '../components/dashboard/UserInputDialog';
 import NewUserForm from '../components/dashboard/NewUserForm';
+import UsersList from '../components/dashboard/UsersList';
 
 const useStyle = makeStyles((theme) => ({
   dashboard: {
@@ -99,7 +100,9 @@ const Dashboard = () => {
             </Grid>
           </Grid>
           <Grid container style={{ height: '75%' }}>
-            <Grid item xs={12} className={classes.userList}></Grid>
+            <Grid item xs={12} className={classes.userList}>
+              <UsersList />
+            </Grid>
           </Grid>
         </Grid>
       </Container>
