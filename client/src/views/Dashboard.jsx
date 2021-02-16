@@ -30,8 +30,12 @@ const useStyle = makeStyles((theme) => ({
   },
   userList: {
     height: '100%',
+    overflowY: 'auto',
     backgroundColor: '#e8e8e8',
     borderRadius: '30px 30px 0 0',
+    padding: '24px',
+    display: 'flex',
+    justifyContent: 'center',
   },
   link: {
     textDecoration: 'none',
@@ -44,9 +48,9 @@ const useStyle = makeStyles((theme) => ({
     },
   },
   dashboardList: {
-    height: '75%',
+    height: 'calc(75% - 1px)',
     [theme.breakpoints.only('xs')]: {
-      height: '65%',
+      height: 'calc(65% - 1px)',
     },
   },
   addUserButton: {
@@ -118,7 +122,7 @@ const Dashboard = () => {
               </Grid>
             </Grid>
           </Grid>
-          <Grid container style={{ height: '75%' }}>
+          <Grid container className={classes.dashboardList}>
             <Grid item xs={12} className={classes.userList}>
               <UsersList />
             </Grid>

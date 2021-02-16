@@ -6,14 +6,12 @@ const UsersList = () => {
   const [users] = useGetUsers();
 
   return (
-    <Container
-      style={{
-        height: '100%',
-        alignItems: 'center',
-        justifyContent: 'center',
-        display: 'flex',
-      }}
-    >
+    <>
+      <Grid container>
+        {users.map((users) => (
+          <Typography>{users.name}</Typography>
+        ))}
+      </Grid>
       <Collapse
         timeout={0}
         in={users.length === 0}
@@ -23,10 +21,7 @@ const UsersList = () => {
           No users created
         </Typography>
       </Collapse>
-      <Grid container style={{ height: '100%' }}>
-        {users.map((users) => users.name)}
-      </Grid>
-    </Container>
+    </>
   );
 };
 
