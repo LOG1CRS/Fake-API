@@ -5,14 +5,15 @@ import {
   getSpecificUsers,
   userError,
 } from '../controllers/user.controller';
+import { verifyToken } from '../middlewares/authJwt';
 
 const router = Router();
 
-router.get('/', getUsers);
+router.get('/', verifyToken, getUsers);
 
-router.post('/', createUser);
+router.post('/', verifyToken, createUser);
 
-router.get('/:id', getSpecificUsers);
+router.get('/:id', verifyToken, getSpecificUsers);
 
 router.get('/*', userError);
 

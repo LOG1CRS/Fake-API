@@ -33,7 +33,7 @@ export const signUp = async (req, res) => {
 
   const token = jwt.sign({ id: userSaved._id }, process.env.SECRET, {});
 
-  res.status(200).json({ token });
+  res.status(200).json({ ...userSaved, token });
 };
 
 export const signIn = async (req, res) => {
@@ -63,5 +63,6 @@ export const signIn = async (req, res) => {
 
   const token = jwt.sign({ id: userFound._id }, process.env.SECRET, {});
 
-  res.status(200).json({ token });
+  // res.status(200).json({ ...userFound, token });
+  res.status(200).json({ ...userFound, token });
 };
