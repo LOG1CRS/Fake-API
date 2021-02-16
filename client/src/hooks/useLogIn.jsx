@@ -18,7 +18,15 @@ const useLogIn = () => {
           email: formEmail,
           password: formPassword,
         })
-        .then((res) => localStorage.setItem('token', res.data.token))
+        .then((res) => {
+          const user = {
+            id: res.data._doc._id,
+            name: res.data._doc.username,
+            email: res.data._doc.email,
+          };
+          localStorage.setItem('user', JSON.stringify(user));
+          localStorage.setItem('token', res.data.token);
+        })
         .then(() => history.push(dashboard));
     }
   }, [formValidated]);
