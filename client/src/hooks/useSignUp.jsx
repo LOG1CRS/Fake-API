@@ -29,7 +29,7 @@ const useSignUp = () => {
         })
         .then(() => history.push(dashboard));
     }
-  }, [formValidated]);
+  }, [formValidated, formPassword, formName, formEmail, history]);
 
   const inputValidation = () => {
     // Name Validation

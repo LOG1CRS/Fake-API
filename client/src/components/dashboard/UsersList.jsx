@@ -14,12 +14,18 @@ const UsersList = () => {
         display: 'flex',
       }}
     >
-      <Collapse in={users.length === 0} style={{ position: 'absolute' }}>
+      <Collapse
+        timeout={0}
+        in={users.length === 0}
+        style={{ position: 'absolute' }}
+      >
         <Typography variant="h2" align="center" style={{ opacity: 0.2 }}>
           No users created
         </Typography>
       </Collapse>
-      <Grid container style={{ height: '100%' }}></Grid>
+      <Grid container style={{ height: '100%' }}>
+        {users.map((users) => users.name)}
+      </Grid>
     </Container>
   );
 };
