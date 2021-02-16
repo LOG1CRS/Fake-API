@@ -242,7 +242,9 @@ const Navbar = (props) => {
                 <RenderIfAuth>
                   <Grid container justify="flex-end">
                     <IconButton size="medium" onClick={handleMenu}>
-                      <Avatar className={classes.avatar}>{user.name[0]}</Avatar>
+                      <Avatar className={classes.avatar}>
+                        {user?.name[0]}
+                      </Avatar>
                     </IconButton>
                     <Menu
                       anchorEl={openMenu}
